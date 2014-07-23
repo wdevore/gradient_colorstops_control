@@ -1,0 +1,5 @@
+name: gradient_colorstops_control
+description: A pub package
+dependencies:
+  color_slider_control:
+    git: git://github.com/wdevore/color_slider_control.git
