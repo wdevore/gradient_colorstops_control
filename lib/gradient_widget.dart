@@ -121,7 +121,7 @@ class GradientColorStopWidget {
       _down = true;
       _draggingEndStop = selectedStop.isEndStop;
       
-      target.mouseDown(e.client);
+      target.mouseDown(getXOffset(e));
       
       // Also send an external event for "down".
       _markerClicked(selectedStop);
@@ -165,7 +165,7 @@ class GradientColorStopWidget {
         target.mouseMove(e.client);
         
         // Update selected color stop as well.
-        _colorSlider.setMarkerLocation(e.client.x);
+        _colorSlider.setMarkerLocation(e.offset.x);
         
         _colorSlider.updateCSSGradientWithStops();
       }
@@ -179,12 +179,16 @@ class GradientColorStopWidget {
     _colorSlider.unselectAll();
   }
   
+  int getXOffset(MouseEvent e) {
+    return e.offset.x + _colorSlider.iconCenter * 2;
+  }
+  
   void _mouseDoubleClick(MouseEvent e) {
     _unselectAll();
     
     if (!e.altKey) {
       // Add marker at cursor position
-      ColorData selectedStop = _addMarker(e.client.x, _colorSlider.iconCenter);
+      ColorData selectedStop = _addMarker(getXOffset(e));
       _colorSlider.highlightAsSelected(selectedStop);
     }
     else {
