@@ -3,3 +3,8 @@
 packages:
   color_slider_control:
     description:
+      ref: null
+      resolved-ref: "8224613c6c4c6f624eb506dc71462ebd5020cb66"
+      url: "git://github.com/wdevore/color_slider_control.git"
+    source: git
+    version: "1.0.0"
