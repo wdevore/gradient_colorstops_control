@@ -108,13 +108,14 @@ class GradientColorStopWidget {
   }
   
   void _mouseDown(MouseEvent e) {
-    _unselectAll();
-    
     // Find and Activate icon.
     ColorData selectedStop = _colorSlider.selectedMarker(e.target);
 
     if (selectedStop == null)
       return;
+    
+    _unselectAll();
+    
     _colorSlider.highlightAsSelected(selectedStop);
     
     if (selectedStop != null) {
@@ -162,10 +163,12 @@ class GradientColorStopWidget {
       }
       else if (!_draggingEndStop) {
         // Update icon position
-        target.mouseMove(e.client);
+        target.mouseMove(getXOffset(e));
         
         // Update selected color stop as well.
-        _colorSlider.setMarkerLocation(e.offset.x);
+        Point np = window.convertPointFromPageToNode(_colorSlider.gradientElement, e.client);
+        double loc = _colorSlider.getLocation(np.x.toInt() + _colorSlider.iconWidth);
+        _colorSlider.selectedStop.gradientlocation = loc;
         
         _colorSlider.updateCSSGradientWithStops();
       }
@@ -180,16 +183,33 @@ class GradientColorStopWidget {
   }
   
   int getXOffset(MouseEvent e) {
-    return e.offset.x + _colorSlider.iconCenter * 2;
+    return e.client.x;//e.offset.x + _colorSlider.iconCenter * 2;
   }
   
   void _mouseDoubleClick(MouseEvent e) {
-    _unselectAll();
-    
     if (!e.altKey) {
       // Add marker at cursor position
-      ColorData selectedStop = _addMarker(getXOffset(e));
-      _colorSlider.highlightAsSelected(selectedStop);
+      // Did they doubleclick on an existing marker or the gradient bar?
+      // the bar not an icon.
+      ColorData selectedStop;
+//      print("-----------------");
+//      print("client: ${e.client}");
+//      print("offset: ${e.offset}");
+      
+      if (e.target == _colorSlider.gradientElement) {
+        _unselectAll();
+        selectedStop = _addMarker(e.offset.x, -_colorSlider.iconWidth);
+        _colorSlider.highlightAsSelected(selectedStop);
+      }
+      else {
+        // Map marker position in bar position.
+//        int position = e.client.x - _colorSlider.leftOffset + _colorSlider.iconCenter;
+//        print("pos: $position");
+//        // client: 288 - 167 = 121
+//        // 520 - 492 = 28   --> 167
+//        selectedStop = _addMarker(e.client.x, -_colorSlider.iconWidth);
+      }
+      
     }
     else {
       // They alt-doubleclicked on a marker. So delete it.

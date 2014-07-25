@@ -14,8 +14,9 @@ However, there is a limit to how much you can change style properties.
 
 /* The target element to inject color picker control */
 #color_pickerId {
-  width: 50%;
-  background-color: #eeeeee;
+  position: relative;
+  width: 100%;
+  background-color: rgba(225,225,225, 0.5);
   border: 1px solid #cccccc;
 }
 
@@ -23,10 +24,10 @@ However, there is a limit to how much you can change style properties.
 .slider_color_container {
   position: relative;
   top: 0px;
-  left: 0px;
-  width: 100%;
+  left: 10px;
+  width: 520px;
   height: 76px;
-  /*background-color: #ffeeee;*/
+  /*background-color: #ffeeaa;*/
 }
 
 /* Contains the child components */

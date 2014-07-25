@@ -1,12 +1,18 @@
 /*
-This Style sheet is required alongside the color_slider_control.
+This Style sheet is required alongside the gradient_control.
 */
+.gradient_selector {
+  position: absolute;
+  left: 100px;
+  top: 200px;
+}
 
 /* The target element to inject color controls */
 #gradient_pickerId {
-  width: 50%;
+  position: relative;
+  width: 100%;
   height: 50px;
-  background-color: #dddddd;
+  background-color: rgba(225,225,225, 0.5);
   border: 1px solid #cccccc;
 }
 
@@ -15,19 +21,19 @@ This Style sheet is required alongside the color_slider_control.
   position: relative;
   top: 0px;
   left: 0px;
-  width: 100%;
+  width: 520px;
   height: 50px;
-  background-color: #eeeeee;
+  /*background-color: rgba(128,128,255, 0.5);*/
 }
 
 /* Contains the child components */
 .stops_gradient_container {
   position: absolute;
-  top: -20px;
+  /*top: -20px;*/
   left: 0px;
   width: 100%;
   height: 53px;
-  /*background-color: #ffaaee;*/
+  /*background-color: rgba(255,128,32, 0.5);*/
 }
 
 /* The color gradient bar. It defaults to a grayscale gradient */
@@ -36,7 +42,7 @@ This Style sheet is required alongside the color_slider_control.
   position: absolute;
   background: linear-gradient(to right, #ffffff, #000000);
   border: 1px solid #000000;
-  top: 30px;
+  top: 10px;
   left: 20px;
   width: 490px;
   height: 20px;
