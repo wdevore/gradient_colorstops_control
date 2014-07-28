@@ -1,5 +1,9 @@
 name: gradient_colorstops_control
-description: A pub package
+version: 1.0.0
+author: Will DeVore
+description: A custom Dart GUI control. It is typically used as a companion control to the color_slider_control.
+homepage: https://github.com/wdevore/gradient_colorstops_control
+documentation: https://github.com/wdevore/gradient_colorstops_control
 dependencies:
   color_slider_control:
     git: git://github.com/wdevore/color_slider_control.git
