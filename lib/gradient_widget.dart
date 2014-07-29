@@ -98,7 +98,6 @@ class GradientColorStopWidget {
       _colorSlider.markers.clear();
       
       for(ColorData cs in stops) {
-        _colorSlider.markers.add(cs);
         _addMarkerWithLoc(cs.gradientlocation, cs);
         _colorSlider.highlightAsUnSelected(cs); 
       }
